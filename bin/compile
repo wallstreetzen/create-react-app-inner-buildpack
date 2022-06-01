@@ -41,4 +41,7 @@ mkdir -p "$profile_d_dir"
 cp "$BP_DIR/.profile.d/inject_react_app_env.sh" "$profile_d_dir/"
 
 echo '       Installing brotli gem for runtime environment variables injection script'
-gem install brotli
+if which ruby >/dev/null && which gem >/dev/null; then
+  PATH="$(ruby -r rubygems -e 'puts Gem.user_dir')/bin:$PATH"
+fi
+gem install brotli --user-install
