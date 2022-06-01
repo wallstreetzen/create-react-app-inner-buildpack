@@ -40,8 +40,7 @@ profile_d_dir="$BUILD_DIR/.profile.d"
 mkdir -p "$profile_d_dir"
 cp "$BP_DIR/.profile.d/inject_react_app_env.sh" "$profile_d_dir/"
 
-echo '       Installing brotli gem'
-if which ruby >/dev/null && which gem >/dev/null; then
-  PATH="$PATH:$(ruby -r rubygems -e 'puts Gem.user_dir')/bin"
-fi
-gem install brotli --user-install
+gem_dir="$BUILD_DIR/.gem/ruby/$(ruby -e 'print RUBY_VERSION')"
+echo "       Installing brotli gem to $(gem_dir)"
+PATH="$PATH:$(gem_dir)/bin"
+gem install brotli --install-dir $gem_dir
