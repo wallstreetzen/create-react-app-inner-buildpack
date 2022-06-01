@@ -39,3 +39,6 @@ cp "$BP_DIR/lib/injectable_env.rb" "$cra_dir/"
 profile_d_dir="$BUILD_DIR/.profile.d"
 mkdir -p "$profile_d_dir"
 cp "$BP_DIR/.profile.d/inject_react_app_env.sh" "$profile_d_dir/"
+
+echo '       Installing brotli gem for runtime environment variables injection script'
+gem install brotli
