@@ -18,12 +18,6 @@ fi
 set -e
 
 # Add user-installed gems to PATH
-if which ruby >/dev/null && which gem >/dev/null; then
-  export PATH="$PATH:$(ruby -r rubygems -e 'puts Gem.user_dir')/bin"
-fi
-
-gem_dir=""
-echo "       Installing brotli gem to $(gem_dir)"
 PATH="$PATH:/app/.gem/ruby/$(ruby -e 'print RUBY_VERSION')/bin"
 
 for js_bundle_filename in $js_bundle_filenames
