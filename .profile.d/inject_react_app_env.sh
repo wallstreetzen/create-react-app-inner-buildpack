@@ -17,9 +17,6 @@ fi
 # Fail immediately on non-zero exit code.
 set -e
 
-# Add user-installed gems to PATH
-PATH="$PATH:/app/.gem/ruby/$(ruby -e 'print RUBY_VERSION')/bin"
-
 for js_bundle_filename in $js_bundle_filenames
 do
   echo "Injecting runtime env into $js_bundle_filename (from .profile.d/inject_react_app_env.sh)"
