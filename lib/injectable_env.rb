@@ -44,7 +44,7 @@ class InjectableEnv
     gzip_file = file + ".gz"
     if File.exist? gzip_file
       compressed = Zlib::Deflate.deflate(injected)
-      File.open(gzip_file, 'w') do |f|
+      File.open(gzip_file, 'wb') do |f|
         f.write(compressed)
       end
     end
@@ -52,7 +52,7 @@ class InjectableEnv
     # brotli_file = file + ".br"
     # if File.exist? brotli_file
     #   compressed = Brotli.deflate(injected)
-    #   File.open(brotli_file, 'w') do |f|
+    #   File.open(brotli_file, 'wb') do |f|
     #     f.write(compressed)
     #   end
     # end
