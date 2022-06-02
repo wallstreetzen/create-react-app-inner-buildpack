@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-# Add user-installed gems to PATH on first deploy
-echo "---"
-echo "addons:"
-echo "config_vars:"
-echo " PATH: $PATH:/app/vendor/.gem/ruby/$(ruby -e 'print RUBY_VERSION')/bin"
-echo "default_process_types:"
