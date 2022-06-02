@@ -1,7 +1,7 @@
 # encoding: utf-8
 require 'json'
 require 'zlib'
-require 'brotli'
+# require 'brotli'
 
 class InjectableEnv
   DefaultVarMatcher = /^REACT_APP_/
@@ -49,13 +49,13 @@ class InjectableEnv
       end
     end
 
-    brotli_file = "file" + ".br"
-    if File.exist? brotli_file
-      compressed = Brotli.deflate(injected)
-      File.open(brotli_file, 'w') do |f|
-        f.write(compressed)
-      end
-    end
+    # brotli_file = "file" + ".br"
+    # if File.exist? brotli_file
+    #   compressed = Brotli.deflate(injected)
+    #   File.open(brotli_file, 'w') do |f|
+    #     f.write(compressed)
+    #   end
+    # end
   end
 
   # Escape JSON name/value double-quotes so payload can be injected

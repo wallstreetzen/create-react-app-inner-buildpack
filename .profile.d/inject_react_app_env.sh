@@ -2,16 +2,20 @@
 # Debug, echo every command
 #set -x
 
+exists() {
+    [ -e "$1" ]
+}
+
+shopt -s globstar
+
 # Each bundle is generated with a unique hash name to bust browser cache.
 # Use shell `*` globbing to fuzzy match.
 # create-react-app v2 with Webpack v4 splits the bundle, so process all *.js files.
-js_bundles="${JS_RUNTIME_TARGET_BUNDLE:-/app/build/static/js/*.js}"
-# Get exact filenames.
-js_bundle_filenames=`ls $js_bundles`
+js_bundle_filenames="${JS_RUNTIME_TARGET_BUNDLE:-/app/build/static/js/*.js}"
 
-if [ ! "$?" = 0 ]
+if [ ! exists $js_bundle_filenames ]
 then
-  echo "Error injecting runtime env: bundle not found '$js_bundles'. See: https://github.com/mars/create-react-app-buildpack/blob/master/README.md#user-content-custom-bundle-location"
+  echo "Error injecting runtime env: bundle not found '$js_bundle_filenames'. See: https://github.com/mars/create-react-app-buildpack/blob/master/README.md#user-content-custom-bundle-location"
 fi
 
 # Fail immediately on non-zero exit code.
