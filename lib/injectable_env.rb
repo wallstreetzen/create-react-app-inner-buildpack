@@ -44,7 +44,7 @@ class InjectableEnv
     gzip_file = file + ".gz"
     if File.exist? gzip_file
       Zlib::GzipWriter.open(gzip_file) do |gz|
-        gz.write file
+        gz.write injected
       end
     end
 
