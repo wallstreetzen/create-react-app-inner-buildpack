@@ -13,7 +13,7 @@ shopt -s globstar
 # create-react-app v2 with Webpack v4 splits the bundle, so process all *.js files.
 js_bundle_filenames="${JS_RUNTIME_TARGET_BUNDLE:-/app/build/static/js/*.js}"
 
-if [ ! exists $js_bundle_filenames ]
+if ! exists $js_bundle_filenames
 then
   echo "Error injecting runtime env: bundle not found '$js_bundle_filenames'. See: https://github.com/mars/create-react-app-buildpack/blob/master/README.md#user-content-custom-bundle-location"
 fi
