@@ -48,11 +48,13 @@ class InjectableEnv
       end
     end
 
-    # brotli_file = file + ".br"
-    # if File.exist? brotli_file
-    #   compressed = Brotli.deflate(injected)
-    #   IO.binwrite(brotli_file, compressed)
-    # end
+    brotli_file = file + ".br"
+    if File.exist? brotli_file
+      # Brotli gem is not working, so the best we can do for now is delete files we cannot recompress
+      File.delete(brotli_file)
+      # compressed = Brotli.deflate(injected)
+      # IO.binwrite(brotli_file, compressed)
+    end
   end
 
   # Escape JSON name/value double-quotes so payload can be injected
