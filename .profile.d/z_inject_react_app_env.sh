@@ -1,4 +1,10 @@
 #!/bin/bash
+# Note: System ruby no longer installed in Cedar-22 onwards,
+# In order to be executed after Ruby buildpack,
+# this file's name has to be later than "ruby.sh"
+# in alphabetical order.
+# https://devcenter.heroku.com/articles/heroku-22-stack#system-ruby-is-no-longer-installed
+
 # Debug, echo every command
 #set -x
 
