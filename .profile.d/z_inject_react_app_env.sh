@@ -29,7 +29,7 @@ set -e
 
 for js_bundle_filename in $js_bundle_filenames
 do
-  echo "Injecting runtime env into $js_bundle_filename (from .profile.d/inject_react_app_env.sh)"
+  echo "Injecting runtime env into $js_bundle_filename (from .profile.d/z_inject_react_app_env.sh)"
 
   # Render runtime env vars into bundle.
   ruby -E utf-8:utf-8 \
