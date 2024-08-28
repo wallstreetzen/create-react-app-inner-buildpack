@@ -1,4 +1,10 @@
 #!/bin/bash
+# Note: System ruby no longer installed in Cedar-22 onwards,
+# In order to be executed after Ruby buildpack,
+# this file's name has to be later than "ruby.sh"
+# in alphabetical order.
+# https://devcenter.heroku.com/articles/heroku-22-stack#system-ruby-is-no-longer-installed
+
 # Debug, echo every command
 #set -x
 
@@ -23,7 +29,7 @@ set -e
 
 for js_bundle_filename in $js_bundle_filenames
 do
-  echo "Injecting runtime env into $js_bundle_filename (from .profile.d/inject_react_app_env.sh)"
+  echo "Injecting runtime env into $js_bundle_filename (from .profile.d/z_inject_react_app_env.sh)"
 
   # Render runtime env vars into bundle.
   ruby -E utf-8:utf-8 \
