@@ -16,8 +16,8 @@ shopt -s globstar
 
 # Each bundle is generated with a unique hash name to bust browser cache.
 # Use shell `*` globbing to fuzzy match.
-# create-react-app v2 with Webpack v4 splits the bundle, so process all *.js files.
-js_bundle_filenames="${JS_RUNTIME_TARGET_BUNDLE:-/app/build/static/js/*.js}"
+# handle split bundles, so process all *.js files.
+js_bundle_filenames="${JS_RUNTIME_TARGET_BUNDLE:-/app/public/packs/js/**/*.js}"
 
 if ! exists $js_bundle_filenames
 then
@@ -36,3 +36,19 @@ do
    -r /app/.heroku/create-react-app/injectable_env.rb \
    -e "InjectableEnv.replace('$js_bundle_filename')"
 done
+
+# Handle server-side rendering bundles if they exist
+js_server_bundle_filenames="${JS_SSR_RUNTIME_TARGET_BUNDLE:-/app/tmp/ssr-generated/*.js}"
+
+if exists $js_server_bundle_filenames
+then
+  for js_server_bundle_filename in $js_server_bundle_filenames
+  do
+    echo "Injecting runtime env into $js_server_bundle_filename (from .profile.d/z_inject_react_app_env.sh)"
+
+    # Render runtime env vars into bundle.
+    ruby -E utf-8:utf-8 \
+    -r /app/.heroku/create-react-app/injectable_env.rb \
+    -e "InjectableEnv.replace('$js_server_bundle_filename')"
+  done
+fi
